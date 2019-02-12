@@ -25,28 +25,44 @@
                 <span id="showQuote"><p>Veer Bhogya Vasundhara</p></span><br>
                 <span id="showAuthor"><p> - Rajputana Rifles</p></span>
             </div>
-
+            <button class="btn btn-secondary" id="save">Save</button>
             <div class="text-center">
                 <button class="btn btn-secondary" type="submit" id="getQuote">Get Another Quote</button>
             </div>
         </div>
 
         <script>
+            let quotes
+
+            if(localStorage.getItem("quotes")){
+                quotes = JSON.parse(localStorage.getItem("quotes"))
+            }else{
+                localStorage.setItem("quotes", JSON.stringify({}))
+                quotes = JSON.parse(localStorage.getItem("quotes"))
+            }
+
             const showQuoteHandle = document.getElementById("showQuote")
             const showAuthorHandle = document.getElementById("showAuthor")
             const getQuoteHandle = document.getElementById("getQuote")
+            const saveHandle = document.getElementById("save")
 
             getQuoteHandle.addEventListener("click", function(){
                 const xhr = new XMLHttpRequest()
-                xhr.open("GET", "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=")
+                xhr.open("GET", "http://quotes.stormconsultancy.co.uk/random.json")
                 xhr.send()
 
                 xhr.onload = function(){
-                    const quotes = JSON.parse(xhr.responseText)
-                    showQuoteHandle.innerHTML = quotes[0].content
-                    console.log(quotes[0].content)
-                    showAuthorHandle.innerHTML = "-" + " " + quotes[0].title
+                    const quotes1 = JSON.parse(xhr.responseText)
+                    showQuoteHandle.innerHTML = quotes1.quote
+                    showAuthorHandle.innerHTML = "-" + " " + quotes1.author
+
+                    quotes.author = quotes1.author
+                    quotes.title = quotes1.quote
                 }
+            })
+
+            saveHandle.addEventListener("click", function(){
+                localStorage.setItem("quotes", JSON.stringify(quotes))
             })
         </script>
     </body>
