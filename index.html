@@ -21,13 +21,32 @@
                 <a href="">List All Quotes</a>
             </div><br>
 
-            <div class="text-center">
+            <div class="jumbotron text-center">
                 <span id="showQuote"></span>
+                <span id="showAuthor"></span>
             </div>
 
             <div class="text-center">
-                <button class="btn btn-secondary" type="submit">Get Another Quote</button>
+                <button class="btn btn-secondary" type="submit" id="getQuote">Get Another Quote</button>
             </div>
         </div>
+
+        <script>
+            const showQuoteHandle = document.getElementById("showQuote")
+            const showAuthorHandle = document.getElementById("showAuthor")
+            const getQuoteHandle = document.getElementById("getQuote")
+
+            getQuoteHandle.addEventListener("click", function(){
+                const xhr = new XMLHttpRequest()
+                xhr.open("GET", "http://quotesondesign.com/wp-json/posts")
+                xhr.send()
+
+                xhr.onload = function(){
+                    const quotes = JSON.parse(xhr.responseText)
+                    showQuoteHandle.innerHTML = quotes[0].content
+                    showAuthorHandle.innerHTML = "-" + " " + quotes[0].title
+                }
+            })
+        </script>
     </body>
 </html>
