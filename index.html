@@ -22,8 +22,8 @@
             </div><br>
 
             <div class="jumbotron text-center">
-                <span id="showQuote"></span>
-                <span id="showAuthor"></span>
+                <span id="showQuote"><p>Veer Bhogya Vasundhara</p></span><br>
+                <span id="showAuthor"><p> - Rajputana Rifles</p></span>
             </div>
 
             <div class="text-center">
@@ -38,12 +38,13 @@
 
             getQuoteHandle.addEventListener("click", function(){
                 const xhr = new XMLHttpRequest()
-                xhr.open("GET", "http://quotesondesign.com/wp-json/posts")
+                xhr.open("GET", "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=")
                 xhr.send()
 
                 xhr.onload = function(){
                     const quotes = JSON.parse(xhr.responseText)
                     showQuoteHandle.innerHTML = quotes[0].content
+                    console.log(quotes[0].content)
                     showAuthorHandle.innerHTML = "-" + " " + quotes[0].title
                 }
             })
