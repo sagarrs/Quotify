@@ -16,7 +16,7 @@
         <div class="container">
             <div class="text-center">
                 <a href="">Random Quote(API)</a> |
-                <a href="">Random Quote(Local)</a> |
+                <a href="/randomQuoLocal.html">Random Quote(Local)</a> |
                 <a href="">Add Quote</a> |
                 <a href="">List All Quotes</a>
             </div><br>
@@ -37,7 +37,7 @@
             if(localStorage.getItem("quotes")){
                 quotes = JSON.parse(localStorage.getItem("quotes"))
             }else{
-                localStorage.setItem("quotes", JSON.stringify({}))
+                localStorage.setItem("quotes", JSON.stringify([]))
                 quotes = JSON.parse(localStorage.getItem("quotes"))
             }
 
@@ -55,14 +55,17 @@
                     const quotes1 = JSON.parse(xhr.responseText)
                     showQuoteHandle.innerHTML = quotes1.quote
                     showAuthorHandle.innerHTML = "-" + " " + quotes1.author
-
-                    quotes.author = quotes1.author
-                    quotes.title = quotes1.quote
                 }
             })
 
+
             saveHandle.addEventListener("click", function(){
+                 const quote = {} 
+                    quote.author = showAuthorHandle.innerHTML
+                    quote.title = showQuoteHandle.innerHTML
+                    quotes.push(quote) 
                 localStorage.setItem("quotes", JSON.stringify(quotes))
+                saveHandle.setAttribute("disabled", true)
             })
         </script>
     </body>
