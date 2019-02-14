@@ -25,6 +25,10 @@
                 <span id="showQuote"><p></p></span><br>
                 <span id="showAuthor"><p></p></span>
             </div>  
+            
+            <ol id="list">
+            </ol> 
+
         </div>
         <script>
             let quotes
@@ -38,11 +42,13 @@
 
             const showQuoteHandle = document.getElementById("showQuote")
             const showAuthorHandle = document.getElementById("showAuthor")
+            const listHandle = document.getElementById("list")
 
-            for(let i = 0; i < quotes.length; i++){
-                showQuoteHandle.innerHTML = quotes[i].title
-                showAuthorHandle.innerHTML = "-" + " " + quotes[i].author
-            }
+            quotes.forEach(function(ele){
+                const li = document.createElement("li")
+                li.textContent = ele.title
+                listHandle.appendChild(li)
+            })
         </script>
     </body>
 </html>
