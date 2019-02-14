@@ -21,16 +21,14 @@
                 <a href="">List All Quotes</a>
             </div><br>
 
-            <div class="jumbotron text-center">
-                <span id="showQuote"><p></p></span><br>
-                <span id="showAuthor"><p></p></span>
-            </div>
-            <button class="btn btn-secondary" id="save">Save</button>
             <div class="text-center">
-                <button class="btn btn-secondary" type="submit" id="getQuote">Get Another Quote</button>
-            </div>
+                <form action="">
+                    <textarea name="quote" id="writeQuote" cols="100" rows="10" value=""></textarea><br><br>
+                    <input type="text" id="writeAuthor" name="author" value=""><br><br>
+                    <button type="submit" id="submission">Submit</button>
+                </form>
+            </div>  
         </div>
-
         <script>
             let quotes
 
@@ -41,16 +39,17 @@
                 quotes = JSON.parse(localStorage.getItem("quotes"))
             }
 
-            const showQuoteHandle = document.getElementById("showQuote")
-            const showAuthorHandle = document.getElementById("showAuthor")
-            const getQuoteHandle = document.getElementById("getQuote")
-            const saveHandle = document.getElementById("save")
+            const writeQuoteHandle = document.getElementById("writeQuote")
+            const writeAuthorHandle = document.getElementById("writeAuthor")
+            const submitHandle = document.getElementById("submission")
 
-
-            getQuoteHandle.addEventListener("click", function(){
-                console.log(quotes);
+            submitHandle.addEventListener("click", function(){
+                const quote = {} 
+                quote.author = writeAuthorHandle.value
+                quote.title = writeQuoteHandle.value
+                quotes.push(quote) 
+                localStorage.setItem("quotes", JSON.stringify(quotes))
             })
-            
         </script>
     </body>
 </html>
