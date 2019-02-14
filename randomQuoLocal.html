@@ -15,17 +15,16 @@
 
         <div class="container">
             <div class="text-center">
-                <a href="">Random Quote(API)</a> |
-                <a href="">Random Quote(Local)</a> |
-                <a href="">Add Quote</a> |
-                <a href="">List All Quotes</a>
+                <a href="index.html">Random Quote(API)</a> |
+                <a href="randomQuoLocal.html">Random Quote(Local)</a> |
+                <a href="addQuote.html">Add Quote</a> |
+                <a href="listQuote.html">List All Quotes</a>
             </div><br>
 
             <div class="jumbotron text-center">
                 <span id="showQuote"><p></p></span><br>
                 <span id="showAuthor"><p></p></span>
             </div>
-            <button class="btn btn-secondary" id="save">Save</button>
             <div class="text-center">
                 <button class="btn btn-secondary" type="submit" id="getQuote">Get Another Quote</button>
             </div>
@@ -44,11 +43,24 @@
             const showQuoteHandle = document.getElementById("showQuote")
             const showAuthorHandle = document.getElementById("showAuthor")
             const getQuoteHandle = document.getElementById("getQuote")
-            const saveHandle = document.getElementById("save")
 
+            function getRandomInt(max) {   
+                return Math.floor(Math.random() * Math.floor(max)); 
+            }
 
+            // let i = 0;
             getQuoteHandle.addEventListener("click", function(){
-                console.log(quotes);
+                // console.log(quotes[getRandomInt(quotes.length)]);
+
+                let x = quotes[getRandomInt(quotes.length)]
+
+                showQuoteHandle.innerHTML = x.title
+                showAuthorHandle.innerHTML = x.author
+
+                // console.log(quotes[i++ % quotes.length]);
+                // if(i >= quotes.length){
+                //     i = 0;
+                // }
             })
             
         </script>
