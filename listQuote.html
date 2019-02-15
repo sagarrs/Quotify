@@ -65,7 +65,12 @@
 
                 // delete functionality
                 delBtn.addEventListener("click", function(){
-                    console.log("deleted")
+                    console.log("delete")
+                    const quote = {} 
+                    quotes.splice(ele,1);
+                    quotes.push(quote)
+                    quotes.pop()
+                    localStorage.setItem("quotes", JSON.stringify(quotes))
                 })
 
                 // edit functionality
