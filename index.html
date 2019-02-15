@@ -49,13 +49,13 @@
             getQuoteHandle.addEventListener("click", function(){
                 saveHandle.disabled = false
                 const xhr = new XMLHttpRequest()
-                xhr.open("GET", "http://quotes.stormconsultancy.co.uk/random.json")
+                xhr.open("GET", "https://cors-anywhere.herokuapp.com/https://opinionated-quotes-api.gigalixirapp.com/v1/quotes")
                 xhr.send()
 
                 xhr.onload = function(){
                     const quotes1 = JSON.parse(xhr.responseText)
-                    showQuoteHandle.innerHTML = quotes1.quote
-                    showAuthorHandle.innerHTML = "-" + " " + quotes1.author
+                    showQuoteHandle.innerHTML = quotes1.quotes[0].quote
+                    showAuthorHandle.innerHTML = "-" + " " + quotes1.quotes[0].author
                 }
             })
 
