@@ -20,14 +20,10 @@
                 <a href="addQuote.html">Add Quote</a> |
                 <a href="listQuote.html">List All Quotes</a>
             </div><br>
-
-            <div class="jumbotron text-center">
-                <span id="showQuote"><p></p></span><br>
-                <span id="showAuthor"><p></p></span>
-            </div>  
             
-            <ol id="list">
-            </ol> 
+            <div class="jumbotron text-center">
+                <p id="list" class="list-unstyled"><span id="showEdit"></span> <br> <span id="showAuth"></span> <span id="update"></span></p>
+            </div> 
 
         </div>
         <script>
@@ -40,15 +36,64 @@
                 quotes = JSON.parse(localStorage.getItem("quotes"))
             }
 
-            const showQuoteHandle = document.getElementById("showQuote")
-            const showAuthorHandle = document.getElementById("showAuthor")
             const listHandle = document.getElementById("list")
+            const showEditHandle = document.getElementById("showEdit")
+            const showAuthHandle = document.getElementById("showAuth")
+            const updateHandle = document.getElementById("update")
 
             quotes.forEach(function(ele){
                 const li = document.createElement("li")
-                li.textContent = ele.title
+                let titles = ele.title
+                let authors = ele.author
+                li.textContent = `${titles} ${authors}`
                 listHandle.appendChild(li)
+
+                // creating the delete button
+                const delBtn = document.createElement("button")
+                delBtn.innerHTML = "del"
+                listHandle.appendChild(delBtn)
+
+                // creating edit button
+                const edit = document.createElement("button")
+                edit.innerHTML = "edit"
+                listHandle.appendChild(edit)
+                
+                // creating br tag
+                const br = document.createElement("br")
+                listHandle.appendChild(br)
+
+
+                // delete functionality
+                delBtn.addEventListener("click", function(){
+                    console.log("deleted")
+                })
+
+                // edit functionality
+                edit.addEventListener("click", function(){
+                    const editArea = document.createElement("textarea")
+                    const editAuth = document.createElement("input")
+                    editAuth.setAttribute("type", "text")
+                    editArea.setAttribute("cols", "60")
+                    editArea.setAttribute("rows", "2")
+
+                    showEditHandle.appendChild(editArea)
+                    showEditHandle.appendChild(editAuth)
+                    editArea.value = ele.title
+                    editAuth.value = ele.author
+
+                    const updateBtn = document.createElement("button")
+                    updateBtn.innerHTML = "update"
+                    updateHandle.appendChild(updateBtn)
+
+                    updateBtn.addEventListener("click", function(){
+                        console.log("updated")
+                    })
+                })
+
+                
             })
+
+
         </script>
     </body>
 </html>

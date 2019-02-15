@@ -47,6 +47,7 @@
             const saveHandle = document.getElementById("save")
 
             getQuoteHandle.addEventListener("click", function(){
+                saveHandle.disabled = false
                 const xhr = new XMLHttpRequest()
                 xhr.open("GET", "http://quotes.stormconsultancy.co.uk/random.json")
                 xhr.send()
@@ -64,7 +65,7 @@
                     quote.title = showQuoteHandle.innerHTML
                     quotes.push(quote) 
                 localStorage.setItem("quotes", JSON.stringify(quotes))
-                saveHandle.setAttribute("disabled", true)
+                saveHandle.disabled = true
             })
         </script>
     </body>
