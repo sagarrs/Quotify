@@ -70,6 +70,7 @@
 
                 // edit functionality
                 edit.addEventListener("click", function(){
+                    // creates the textarea and textbox
                     const editArea = document.createElement("textarea")
                     const editAuth = document.createElement("input")
                     editAuth.setAttribute("type", "text")
@@ -81,19 +82,22 @@
                     editArea.value = ele.title
                     editAuth.value = ele.author
 
+                    // create update button inside edit
                     const updateBtn = document.createElement("button")
                     updateBtn.innerHTML = "update"
                     updateHandle.appendChild(updateBtn)
 
                     updateBtn.addEventListener("click", function(){
                         console.log("updated")
+                        const quote = {} 
+                        ele.author = editAuth.value
+                        ele.title = editArea.value
+                        quotes.push(quote) 
+                        quotes.pop()
+                        localStorage.setItem("quotes", JSON.stringify(quotes))
                     })
                 })
-
-                
             })
-
-
         </script>
     </body>
 </html>
