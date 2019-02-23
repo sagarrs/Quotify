@@ -31,6 +31,7 @@
         </div>
 
         <script>
+            // setting up local storage
             let quotes
 
             if(localStorage.getItem("quotes")){
@@ -44,23 +45,19 @@
             const showAuthorHandle = document.getElementById("showAuthor")
             const getQuoteHandle = document.getElementById("getQuote")
 
+            // this function is called below
             function getRandomInt(max) {   
                 return Math.floor(Math.random() * Math.floor(max)); 
             }
 
-            // let i = 0;
             getQuoteHandle.addEventListener("click", function(){
-                // console.log(quotes[getRandomInt(quotes.length)]);
-
+                // getting random quotes from local storage
                 let x = quotes[getRandomInt(quotes.length)]
 
+                // the out put is displayed in the innerhtml of specified tag
                 showQuoteHandle.innerHTML = x.title
                 showAuthorHandle.innerHTML = x.author
 
-                // console.log(quotes[i++ % quotes.length]);
-                // if(i >= quotes.length){
-                //     i = 0;
-                // }
             })
             
         </script>

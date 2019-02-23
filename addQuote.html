@@ -30,6 +30,7 @@
             </div>  
         </div>
         <script>
+            // setting up local storage 
             let quotes
 
             if(localStorage.getItem("quotes")){
@@ -44,10 +45,17 @@
             const submitHandle = document.getElementById("submission")
 
             submitHandle.addEventListener("click", function(){
+                // here we are creating an empty 'quote' object
+                // to that we r adding the text area and text box value
+                // by creating the keys author and title
+                
                 const quote = {} 
                 quote.author = writeAuthorHandle.value
                 quote.title = writeQuoteHandle.value
+                // and pushed into the quotes array which is created during local storage
                 quotes.push(quote) 
+                // storing into local storage .
+                // if this is not done then the local storage will be empty
                 localStorage.setItem("quotes", JSON.stringify(quotes))
             })
         </script>

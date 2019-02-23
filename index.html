@@ -32,6 +32,7 @@
         </div>
 
         <script>
+            // setting up local storage
             let quotes
 
             if(localStorage.getItem("quotes")){
@@ -46,6 +47,7 @@
             const getQuoteHandle = document.getElementById("getQuote")
             const saveHandle = document.getElementById("save")
 
+            // make api call and fetch quote and author
             getQuoteHandle.addEventListener("click", function(){
                 saveHandle.disabled = false
                 const xhr = new XMLHttpRequest()
@@ -59,6 +61,19 @@
                 }
             })
 
+            // using fetch
+
+            // fetch("https://cors-anywhere.herokuapp.com/https://opinionated-quotes-api.gigalixirapp.com/v1/quotes")
+            //     .then(function(response){
+            //         return response.json()
+            //     })
+            //     .then(function(data){
+            //         console.log(data)
+            //         console.log(data.quotes[0].quote)
+            //     })
+
+            
+            // saving the quotes in the local storage
             saveHandle.addEventListener("click", function(){
                  const quote = {} 
                     quote.author = showAuthorHandle.innerHTML
