@@ -27,6 +27,7 @@
 
         </div>
         <script>
+            // setting up local storage
             let quotes
 
             if(localStorage.getItem("quotes")){
@@ -42,6 +43,7 @@
             const updateHandle = document.getElementById("update")
 
             quotes.forEach(function(ele){
+                // here i am creating a list for each quote and author
                 const li = document.createElement("li")
                 let titles = ele.title
                 let authors = ele.author
@@ -92,6 +94,7 @@
                     updateBtn.innerHTML = "update"
                     updateHandle.appendChild(updateBtn)
 
+                    // update functionality
                     updateBtn.addEventListener("click", function(){
                         console.log("updated")
                         const quote = {} 
